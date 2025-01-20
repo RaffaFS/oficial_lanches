@@ -1,0 +1,260 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    overflow-x: hidden;
+
+    .hero{
+        height: 40vh;
+        background-image: url(../imgs/Geral/hero1.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+
+        &::before{
+            background-color: rgba(0, 0, 0, .2);                            
+            background-image: linear-gradient(0deg, #000, transparent, transparent, transparent);
+            position: absolute;
+            content: '';
+            inset: 0;
+        }
+
+        .central_logo{
+            margin: 0 auto;
+            max-width: 1280px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            top: 24vh;
+
+            img{
+                border-radius: 50%;
+                max-width: 240px;
+            }
+        }
+    }
+
+    .cardapio_box{
+        background-image: url(../imgs/Geral/black-wooden-floor.jpg);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .cardapio{
+            padding-top: 24vh;
+
+            .menu{
+                display: flex;
+                max-width: 720px;
+                width: 90%;
+                margin: 0 auto;
+                justify-content: space-between;
+                margin-bottom: 32px;
+
+                .tabBox{
+                    .btn{
+                        padding: 0 4px;
+                        color: whitesmoke;
+                        font-size: 32px;
+                        border: none;
+                        background-color: transparent;
+                        border-radius: 4px;
+                        transition: all ease 0.3s;
+                        border-bottom: white solid 4px;
+    
+                        &:hover{
+                            text-shadow: white 0px 0px 4px;
+                            transform: scale(1.1);
+                            transition: all ease 0.3s;
+                        }
+                    }
+                    .hiddenBorder{
+                        border: none;
+                    }
+                }
+            }
+            
+            .grupo{
+                max-width: 1280px;
+                width: 90%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin: 0 auto;
+                margin-bottom: 32px;
+
+                .item{
+                    max-width: 580px;
+                    width: 100%;
+                    display: flex;
+                    gap: 16px;
+                    margin-bottom: 32px;
+                    background-color: whitesmoke;
+                    padding: 16px;
+                    border-radius: 16px;
+                    border: 2px #222 solid;
+                    box-shadow: white 0px 0px 8px;
+
+                    img{
+                        border-radius: 16px;
+                        max-width: 180px;
+                        box-shadow: 2px 4px 8px;
+                    }
+
+                    .description{
+                        padding: 8px 4px;;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        .texto{
+
+                            width: 100%;
+                            .title{
+                                font-size: 24px;
+                                margin-bottom: 8px;
+                            }
+    
+                            p{
+                                font-size: 20px;
+                                margin-bottom: 8px;
+                            }
+    
+                            .preco{
+                                font-size: 20px;
+                            }
+                        }
+                        
+                        .btnBox{
+                            display: flex;
+                            width: 100%;
+                            justify-content: end;
+
+                            .adicionar{
+                                padding: 4px 8px;
+                                font-size: 16px;
+                                background-color: rgb(160, 40, 8);
+                                border-radius: 4px;
+                                color: white;
+                                border: solid rgb(160, 40, 8) 2px;
+                                box-shadow: #000 1px 2px 4px;
+                                transition: all ease 0.3s;
+
+                                &:hover{
+                                    transform: scale(1.1);
+                                    transition: all ease 0.3s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #sobre{
+                margin-bottom: 0;
+                padding: 48px 0 80px;
+
+                p{
+                    max-width: 720px;
+                    width: 100%;
+                    text-align: center;
+                    margin: 0 auto;
+                    padding: 16px 0;
+                    color: whitesmoke;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 4px;
+                    border: solid 2px rgba(0, 0, 0, 0.6);
+                    font-size: 24px;
+                }
+            }
+
+            .hidden{
+                display: none;
+            }
+
+            .infos{
+                max-width: 1280px;
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+                
+                h2{
+                    font-size: 32px;
+                    color: whitesmoke;
+                    margin-bottom: 32px;
+                }
+
+                .inputs{
+                    display: flex;
+                    justify-content: center;
+                    gap: 64px;
+                    padding-bottom: 32px;
+
+                    .pedido{
+                        max-width: 480px;
+                        width: 100%;
+
+                        .carrinho, .obs{
+                            font-size: 16px;
+                            margin-bottom: 16px;
+                            border-radius: 8px;
+                            width: 100%;
+                            padding: 4px;
+                            margin-bottom: 16px;
+                            max-height: 136px;
+                            height: 100%;
+                        }
+
+                        .obs{
+                            max-height: 72px;
+                        }
+                    }
+                    
+                    .endereco{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                        margin-bottom: 36px;
+
+                        input{
+                            font-size: 16px;
+                            border-radius: 8px;
+                            padding: 2px 8px;
+                            max-width: 360px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .btnBox{
+                    padding-bottom: 64px;
+                    display: flex;
+                    justify-content: center;
+
+                    .btnEnviar{
+                        max-width: 320px;
+                        padding: 4px 8px;
+                        font-size: 24px;
+                        background-color: rgb(8, 160, 40);
+                        border-radius: 4px;
+                        border: solid rgb(8, 160, 40) 2px;
+                        box-shadow: #000 1px 2px 4px;
+                        color: white;
+                        transition: all ease 0.3s;
+
+                        &:hover{
+                            transform: scale(1.1);
+                            transition: all ease 0.3s;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

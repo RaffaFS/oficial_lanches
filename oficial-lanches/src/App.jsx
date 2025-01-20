@@ -1,5 +1,5 @@
 import React from 'react'
-import Cardapio from "./componentes"
+import Cardapio from "./componentes/cardapio"
 
 function App() {
 

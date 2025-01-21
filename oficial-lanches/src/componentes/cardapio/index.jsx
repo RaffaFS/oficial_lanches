@@ -4,6 +4,23 @@ import styles from './index.module.scss'
 
 import logo from '../../imgs/Logo/logo_background.png'
 
+import smashIMG from '../../imgs/Salgados/smash_burger.jpg'
+import baconIMG from '../../imgs/Salgados/bacon_burger.jpg'
+import crispyIMG from '../../imgs/Salgados/crispy_chicken.jpg'
+import duploIMG from '../../imgs/Salgados/duplo_da_casa.jpg'
+import crepe1IMG from '../../imgs/Salgados/crepe_salgado.jpg'
+
+import cocapIMG from '../../imgs/Bebidas/coca_lata.jpg'
+import guaranapIMG from '../../imgs/Bebidas/guarana_lata.jpg'
+import cocagIMG from '../../imgs/Bebidas/coca_2l.jpg'
+import sukitagIMG from '../../imgs/Bebidas/sukita_2l.jpg'
+
+import oreoIMG from '../../imgs/Doces/geladinho_oreo.jpg'
+import maracujaIMG from '../../imgs/Doces/geladinho_chocolate_maracuja.jpg'
+import prestigioIMG from '../../imgs/Doces/geladinho_prestigio.jpg'
+import bisIMG from '../../imgs/Doces/geladinho_bis.jpg'
+import crepe2IMG from '../../imgs/Doces/crepe_doce.jpg'
+
 export default () => {
 
     return (
@@ -34,7 +51,7 @@ export default () => {
                         </div>
                         <div className={`${styles.grupo}`}>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={smashIMG} alt="Smash Burguer" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Smash Burguer</h3>
@@ -47,7 +64,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={baconIMG} alt="Bacon Burguer" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Bacon Burguer</h3>
@@ -60,7 +77,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={crispyIMG} alt="Crispy Chicken" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Crispy Chicken</h3>
@@ -73,7 +90,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={duploIMG} alt="Duplo da Casa" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Duplo da Casa</h3>
@@ -86,7 +103,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={crepe1IMG} alt="Crepe de Pizza" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Crepe de Pizza</h3>
@@ -98,7 +115,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={crepe1IMG} alt="Crepe de Frango com Catupiry" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Crepe de Frango com Catupiry</h3>
@@ -112,7 +129,7 @@ export default () => {
                         </div>
                         <div className={`${styles.grupo} ${styles.hidden}`}>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={cocapIMG} alt="Coca-Cola 350ml" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Coca-Cola 350ml</h3>
@@ -124,7 +141,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={guaranapIMG} alt="Guaraná 350ml" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Guaraná 350ml</h3>
@@ -136,7 +153,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={cocagIMG} alt="Coca-Cola 2L" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Coca-Cola 2L</h3>
@@ -148,7 +165,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={sukitagIMG} alt="Sukita 2L" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Sukita 2L</h3>
@@ -162,7 +179,7 @@ export default () => {
                         </div>
                         <div className={`${styles.grupo} ${styles.hidden}`}>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={oreoIMG} alt="Geladinho Gourmet de Oreo" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Geladinho Gourmet de Oreo</h3>
@@ -174,7 +191,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={maracujaIMG} alt="Geladinho Gourmet de Chocolate com Maracujá" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Geladinho Gourmet de Chocolate com Maracujá</h3>
@@ -186,7 +203,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={prestigioIMG} alt="Geladinho Gourmet de Prestígio" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Geladinho Gourmet de Prestígio</h3>
@@ -198,7 +215,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={bisIMG} alt="Geladinho Gourmet BIS" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Geladinho Gourmet BIS</h3>
@@ -210,7 +227,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={crepe2IMG} alt="Crepe de Prestígio" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Crepe de Prestígio</h3>
@@ -222,7 +239,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src="" alt="" />
+                                <img src={crepe2IMG} alt="Crepe de Sonho de Valsa" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Crepe de Sonho de Valsa</h3>

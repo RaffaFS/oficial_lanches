@@ -156,7 +156,7 @@
                 }
             }
 
-            #sobre{
+            .sobre{
                 margin-bottom: 0;
                 padding: 48px 0 80px;
 
@@ -200,15 +200,49 @@
                         max-width: 480px;
                         width: 100%;
 
-                        .obs{
+                        ul, .obs{
                             font-size: 16px;
                             margin-bottom: 16px;
                             border-radius: 8px;
                             width: 100%;
                             padding: 4px;
                             margin-bottom: 16px;
-                            max-height: 136px;
                             height: 100%;
+                        }
+
+                        ul{
+                            background-color: white;
+                            max-height: 200px;
+
+                            li{
+                                list-style: none;
+                                font-weight: 700;
+                                border-radius: 4px;
+                                padding: 8px 8px;
+                                text-align: left;
+                                background-color: whitesmoke;
+                                display: flex;
+                                justify-content: space-between;
+                                border: solid 2px rgba(0, 0, 0, .2);
+
+                                p{
+                                    font-size: 18px;
+                                }
+
+                                strong{
+                                    color: white;
+                                    background-color: rgb(160, 40, 8);
+                                    padding: 0 6px;
+                                    border-radius: 50%;
+                                    cursor: pointer;
+                                    transition: all ease 0.2s;
+                                    
+                                    &:hover{
+                                        transition: all ease 0.2s;
+                                        transform: scale(1.1);
+                                    }
+                                }
+                            }
                         }
 
                         .obs{

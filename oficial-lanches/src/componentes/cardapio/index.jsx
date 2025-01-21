@@ -1,6 +1,10 @@
+// IMPORTAÇÃO PADRÃO
+
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from './index.module.scss'
+
+// IMPORTAÇÃO DE IMAGENS
 
 import logo from '../../imgs/Logo/logo_background.png'
 
@@ -21,7 +25,41 @@ import prestigioIMG from '../../imgs/Doces/geladinho_prestigio.jpg'
 import bisIMG from '../../imgs/Doces/geladinho_bis.jpg'
 import crepe2IMG from '../../imgs/Doces/crepe_doce.jpg'
 
-export default () => {
+////////////////////////////
+// CÓDIGO PARA EXPORTAÇÃO //
+////////////////////////////
+
+export default() => {
+
+    const [salgados, setSalgados] = useState(true)
+    const [bebidas, setBebidas] = useState(false)
+    const [doces, setDoces] = useState(false)
+    const [sobre, setSobre] = useState(false)
+
+    function ativaSalgados(){
+        setSalgados(true)
+        setBebidas(false)
+        setDoces(false)
+        setSobre(false)
+    }
+    function ativaBebidas(){
+        setSalgados(false)
+        setBebidas(true)
+        setDoces(false)
+        setSobre(false)
+    }
+    function ativaDoces(){
+        setSalgados(false)
+        setBebidas(false)
+        setDoces(true)
+        setSobre(false)
+    }
+    function ativaSobre(){
+        setSalgados(false)
+        setBebidas(false)
+        setDoces(false)
+        setSobre(true)
+    }
 
     return (
         <>
@@ -37,16 +75,16 @@ export default () => {
                     <div className={styles.cardapio}>
                         <div className={styles.menu}>
                             <div className={styles.tabBox}>
-                                <button type="button" className={`${styles.btn}`}>Salgados</button>
+                                <button type="button" className={`${styles.btn} ${salgados ? '' : styles.hiddenBorder}`} onClick={ativaSalgados} >Salgados</button>
                             </div>
                             <div className={styles.tabBox}>
-                            <button type="button" className={`${styles.btn} ${styles.hiddenBorder}`}>Bebidas</button>
+                            <button type="button" className={`${styles.btn} ${bebidas ? '' : styles.hiddenBorder}`} onClick={ativaBebidas} >Bebidas</button>
                             </div>
                             <div className={styles.tabBox}>
-                                <button type="button" className={`${styles.btn} ${styles.hiddenBorder}`}>Doces</button>
+                                <button type="button" className={`${styles.btn} ${doces ? '' : styles.hiddenBorder}`} onClick={ativaDoces} >Doces</button>
                             </div>
                             <div className={styles.tabBox}>
-                                <button type="button" className={`${styles.btn} ${styles.hiddenBorder}`}>Sobre</button>
+                                <button type="button" className={`${styles.btn} ${sobre ? '' : styles.hiddenBorder}`} onClick={ativaSobre} >Sobre</button>
                             </div>
                         </div>
                         <div className={`${styles.grupo}`}>
@@ -249,6 +287,30 @@ export default () => {
                                         <button className={styles.adicionar} data-item="Crepe de Sonho de Valsa">Adicionar</button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div className={`${styles.grupo} ${styles.hidden}`}>
+                            <p>Inserimos aqui um texto de apresentação sobre o negócio</p>
+                        </div>
+                        <div className={styles.infos}>
+                            <h2>Confira seu pedido, adicione observações e digite o endereço</h2>
+                            <div className={styles.inputs}>
+                                <div className={styles.pedido}>
+                                    <ul>
+                                    </ul>
+                                    <textarea className={styles.obs} placeholder="Adicione observações aqui"></textarea>
+                                </div>
+                                <div className={styles.endereco}>
+                                    <input type="text" placeholder="CEP"/>
+                                    <input type="text" placeholder="Cidade"/>
+                                    <input type="text" placeholder="Bairro"/>
+                                    <input type="text" placeholder="Rua"/>
+                                    <input type="text" placeholder="Número"/>
+                                    <input type="text" placeholder="Complemento"/>
+                                </div>
+                            </div>
+                            <div className={styles.btnBox}>
+                                <button className={styles.btnEnviar} type="button">Enviar pelo WhatsApp</button>
                             </div>
                         </div>
                     </div>

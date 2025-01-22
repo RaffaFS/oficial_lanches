@@ -146,7 +146,17 @@ export default() => {
 
     function enviar(e){
         e.preventDefault()
-        const whatsURL = `https://wa.me/5547991325214/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Total de R${valorF} // Cidade: ${cidade} // Bairro: ${bairro} // Rua: ${rua} - N°${numero} --- ${complemento} `
+        const mensagem = `
+            Meu pedido é: ${carrinho.join(", ")} === 
+            Observações: ${obs} === 
+            Total: R$${valorF} === 
+            Cidade: ${cidade} - 
+            Bairro: ${bairro} - 
+            Rua: ${rua} - 
+            Nº ${numero} - 
+            Complemento: ${complemento}
+        `.trim();
+        const whatsURL = `https://wa.me/5547991325214/?text=${mensagem}`
         window.open(whatsURL, '_blank')
     }
 

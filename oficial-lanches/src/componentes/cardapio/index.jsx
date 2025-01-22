@@ -67,6 +67,7 @@ export default() => {
 
     const [carrinho, setCarrinho] = useState([]);
     const [obs, setObs] = useState('');
+    const [CEP, setCEP] = useState('');
     const [cidade, setCidade] = useState('');
     const [bairro, setBairro] = useState('');
     const [rua, setRua] = useState('');
@@ -108,8 +109,19 @@ export default() => {
         setComplemento(e.target.value)
     }
 
-    function enviar(){
-        const whatsURL = `https://wa.me/5547991974121/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Endereço: ${cidade} - ${bairro} - ${rua} - ${numero} --- ${complemento} `
+    function carregaLocal(){
+        fetch(`https://viacep.com.br/ws/${CEP}/json/`)
+        .then(retorno => retorno.json())
+        .then(formatado => {
+            setCidade(formatado.localidade)
+            setBairro(formatado.bairro)
+            setRua(formatado.logradouro)
+        })
+    }
+
+    function enviar(e){
+        e.preventDefault()
+        const whatsURL = `https://wa.me/5547991974121/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Cidade: ${cidade} // Bairro: ${bairro} // Rua: ${rua} - ${numero} --- ${complemento} `
         window.open(whatsURL, '_blank')
     }
 
@@ -346,7 +358,7 @@ export default() => {
                         <div className={`${styles.grupo} ${styles.sobre} ${sobre ? '' : styles.hidden}`}>
                             <p>Inserimos aqui um texto de apresentação sobre o negócio</p>
                         </div>
-                        <div className={`${styles.infos} ${sobre ? styles.hidden : ''}`}>
+                        <form className={`${styles.infos} ${sobre ? styles.hidden : ''}`} onSubmit={enviar}>
                             <h2>Confira seu pedido, adicione observações e digite o endereço</h2>
                             <div className={styles.inputs}>
                                 <div className={styles.pedido}>
@@ -361,18 +373,18 @@ export default() => {
                                     <textarea className={styles.obs} placeholder="Adicione observações aqui" onChange={anotar}></textarea>
                                 </div>
                                 <div className={styles.endereco}>
-                                    <input type="text" placeholder="CEP"/>
-                                    <input required type="text" placeholder="Cidade" onChange={anotarCidade} />
-                                    <input required type="text" placeholder="Bairro" onChange={anotarBairro} />
-                                    <input required type="text" placeholder="Rua" onChange={anotarRua} />
+                                    <input type="text" placeholder="CEP" onChange={(e) => setCEP(e.target.value)} onBlur={carregaLocal}/>
+                                    <input required type="text" placeholder="Cidade" value={cidade} onChange={anotarCidade} />
+                                    <input required type="text" placeholder="Bairro" value={bairro} onChange={anotarBairro} />
+                                    <input required type="text" placeholder="Rua" value={rua} onChange={anotarRua} />
                                     <input required type="text" placeholder="Número" onChange={anotarNumero} />
                                     <input type="text" placeholder="Complemento" onChange={anotarComplemento} />
                                 </div>
                             </div>
                             <div className={styles.btnBox}>
-                                <button className={styles.btnEnviar} type="button" onClick={enviar}>Enviar pelo WhatsApp</button>
+                                <button className={styles.btnEnviar} type="submit">Enviar pelo WhatsApp</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

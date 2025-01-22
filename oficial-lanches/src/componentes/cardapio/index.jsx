@@ -63,18 +63,43 @@ export default() => {
         setSobre(true)
     }
 
-    // REFERENTE AO SISTEMA DE LISTA E PRODUTOS NO CARRINHO
+    // REFERENTE AO SISTEMA DE LISTA E PRODUTOS NO CARRINHO E ENVIO
 
     const [carrinho, setCarrinho] = useState([]);
-    const [carrinhoU, setCarrinhoU] = useState('');
+    const [obs, setObs] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [rua, setRua] = useState('');
+    const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState('');
 
     function adicionar(item){
         setCarrinho((carrinhoAtual) => [...carrinhoAtual, item]);
     }
 
-    useEffect(() =>{
-        setCarrinhoU(carrinho)
-    }, [carrinho])
+    function anotar(e){
+        setObs(e.target.value)
+    }
+    function anotarCidade(e){
+        setCidade(e.target.value)
+    }
+    function anotarBairro(e){
+        setBairro(e.target.value)
+    }
+    function anotarRua(e){
+        setRua(e.target.value)
+    }
+    function anotarNumero(e){
+        setNumero(e.target.value)
+    }
+    function anotarComplemento(e){
+        setComplemento(e.target.value)
+    }
+
+    function enviar(){
+        const whatsURL = `https://wa.me/5547991974121/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Endereço: ${cidade} - ${bairro} - ${rua} - ${numero} --- ${complemento} `
+        window.open(whatsURL, '_blank')
+    }
 
     // RETORNO PARA EXPORTAÇÃO
 
@@ -321,19 +346,19 @@ export default() => {
                                             </li>
                                         ))}
                                     </ul>
-                                    <textarea className={styles.obs} placeholder="Adicione observações aqui"></textarea>
+                                    <textarea className={styles.obs} placeholder="Adicione observações aqui" onChange={anotar}></textarea>
                                 </div>
                                 <div className={styles.endereco}>
                                     <input type="text" placeholder="CEP"/>
-                                    <input type="text" placeholder="Cidade"/>
-                                    <input type="text" placeholder="Bairro"/>
-                                    <input type="text" placeholder="Rua"/>
-                                    <input type="text" placeholder="Número"/>
-                                    <input type="text" placeholder="Complemento"/>
+                                    <input required type="text" placeholder="Cidade" onChange={anotarCidade} />
+                                    <input required type="text" placeholder="Bairro" onChange={anotarBairro} />
+                                    <input required type="text" placeholder="Rua" onChange={anotarRua} />
+                                    <input required type="text" placeholder="Número" onChange={anotarNumero} />
+                                    <input type="text" placeholder="Complemento" onChange={anotarComplemento} />
                                 </div>
                             </div>
                             <div className={styles.btnBox}>
-                                <button className={styles.btnEnviar} type="button">Enviar pelo WhatsApp</button>
+                                <button className={styles.btnEnviar} type="button" onClick={enviar}>Enviar pelo WhatsApp</button>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import styles from './index.module.scss'
 
 // IMPORTAÇÃO DE IMAGENS
 
-import logo from '../../imgs/Logo/logo_background.png'
+import logo from '../../imgs/Logo/logo_background.jpg'
 
 import smashIMG from '../../imgs/Salgados/smash_burger.jpg'
 import baconIMG from '../../imgs/Salgados/bacon_burger.jpg'
@@ -65,7 +65,10 @@ export default() => {
 
     // REFERENTE AO SISTEMA DE LISTA E PRODUTOS NO CARRINHO E ENVIO
 
+    const [popup, setPopup] = useState(false)
     const [carrinho, setCarrinho] = useState([]);
+    const [valores, setValores] = useState([]);
+    const [valorF, setValorF] = useState(0);
     const [obs, setObs] = useState('');
     const [CEP, setCEP] = useState('');
     const [cidade, setCidade] = useState('');
@@ -74,8 +77,20 @@ export default() => {
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
 
-    function adicionar(item){
-        setCarrinho((carrinhoAtual) => [...carrinhoAtual, item]);
+    function adicionar(item, preco){
+        if(!popup){
+            setPopup(!popup)
+            setTimeout(() => setPopup(!!popup), 800)
+        }
+
+        setCarrinho((carrinhoAtual) => [...carrinhoAtual, item])
+
+        setValores((valoresAnteriores) => {
+            const novosValores = [...valoresAnteriores, Number(preco)]
+            const valorFinal = novosValores.reduce((resultado, item) => resultado + item, 0).toFixed(2)
+            setValorF(valorFinal)
+            return novosValores
+        })
     }
 
     function remover(item){
@@ -87,7 +102,17 @@ export default() => {
                 carrinhoAtual = novoCarrinho
             return carrinhoAtual;
         })
-        console.log(carrinho)
+        
+        const precoReal = item.target.previousElementSibling.children[1].innerText
+        setValores((valoresAnteriores) => {
+            const precoIndex = valoresAnteriores.indexOf(precoReal)
+                const novosValores = [...valoresAnteriores]
+                novosValores.splice(precoIndex, 1)
+                valoresAnteriores = novosValores
+                const valorFinal = novosValores.reduce((resultado, item) => resultado + item, 0).toFixed(2)
+                setValorF(valorFinal)
+            return valoresAnteriores;
+        })
     }
 
     function anotar(e){
@@ -121,7 +146,7 @@ export default() => {
 
     function enviar(e){
         e.preventDefault()
-        const whatsURL = `https://wa.me/5547991974121/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Cidade: ${cidade} // Bairro: ${bairro} // Rua: ${rua} - ${numero} --- ${complemento} `
+        const whatsURL = `https://wa.me/5547991325214/?text=Meu pedido é: ${carrinho.join(", ")} // ${obs} // Total de R${valorF} // Cidade: ${cidade} // Bairro: ${bairro} // Rua: ${rua} - N°${numero} --- ${complemento} `
         window.open(whatsURL, '_blank')
     }
 
@@ -131,6 +156,7 @@ export default() => {
         <>
             <div className={styles.container}>
                 <header>
+                    <p className={`${styles.popup} ${popup ? '' : styles.popupNone}`}>item adicionado!</p>
                     <div className={styles.hero}>
                         <div className={styles.central_logo}>
                             <img src={logo} alt="logo com background" />
@@ -163,7 +189,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 17,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Smash Burguer")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Smash Burguer", "17.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +202,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 22,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Bacon Burguer")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Bacon Burguer", "22.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +215,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 23,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crispy Chicken")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Crispy Chicken", "23.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +228,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 26,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Duplo da Casa")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Duplo da Casa", "26.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +240,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 7,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Pizza")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Pizza", "7.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +252,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 7,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Frango com Catupiry")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Frango com Catupiry", "7.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +266,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Coca-Cola 350ml")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Coca-Cola 350ml", "4.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +278,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,90</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Guaraná 350ml")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Guaraná 350ml", "4.90")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +290,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 14,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Coca-Cola 2L")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Coca-Cola 2L", "14.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +302,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 13,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Sukita 2L")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Sukita 2L", "13.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +316,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Oreo")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Oreo", "4.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -302,7 +328,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Chocolate com Maracujá")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Chocolate com Maracujá", "4.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -314,7 +340,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Prestígio")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Prestígio", "4.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +352,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 4,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet BIS")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet BIS", "4.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +364,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 7,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Prestígio")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Prestígio", "7.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +376,7 @@ export default() => {
                                         <h4 className={styles.preco}>R$ 7,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Sonho de Valsa")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Sonho de Valsa", "7.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -363,9 +389,12 @@ export default() => {
                             <div className={styles.inputs}>
                                 <div className={styles.pedido}>
                                     <ul>
-                                        {carrinho.map((item) => (
+                                        {carrinho.map((item, index) => (
                                             <li key={Math.random()}>
-                                                <p>{item}</p>
+                                                <div className={styles.itemInfo}>
+                                                    <p>{item}</p>
+                                                    <p>R${valores[index]}</p>
+                                                </div>
                                                 <strong onClick={remover}>x</strong>
                                             </li>
                                         ))}
@@ -381,8 +410,16 @@ export default() => {
                                     <input type="text" placeholder="Complemento" onChange={anotarComplemento} />
                                 </div>
                             </div>
+                            <div className={styles.calcBox}>
+                                <div className={styles.pix}>
+                                    <p className={styles.pixTxt}>Total a pagar: R${valorF}</p>
+                                    <p className={styles.pixTxt}>Chave PIX: 47991325214</p>
+                                    <p className={styles.pixTxt}>Beneficiário: Yasmin Oliveira</p>
+                                </div>
+                                    <p className={styles.txt}>Favor enviar o comprovante de pagamento após o envio do pedido.</p>
+                            </div>
                             <div className={styles.btnBox}>
-                                <button className={styles.btnEnviar} type="submit">Enviar pelo WhatsApp</button>
+                                <button className={styles.btnEnviar} type="submit">Enviar pedido pelo WhatsApp</button>
                             </div>
                         </form>
                     </div>

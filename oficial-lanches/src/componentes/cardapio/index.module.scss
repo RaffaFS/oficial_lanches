@@ -8,6 +8,31 @@
 .container{
     overflow-x: hidden;
 
+    .popup{
+        position: fixed;
+        top: 92%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        padding: 8px 16px;
+        background-color: rgba(0, 0, 0, 0.8);
+        box-shadow: 0px 0px 6px;
+        color: white;
+        border-radius: 8px;
+        opacity: 100;
+        transition: all ease .3s;
+        font-size: 24px;
+
+        @media(max-width: 767px){
+            font-size: 16px;
+        }
+    }
+
+    .popupNone{
+        opacity: 0;
+        transition: all ease .3s;
+        transform: translate(-50%, 10vh);
+    }
+
     .hero{
         height: 40vh;
         background-image: url(../../imgs/Geral/hero1.jpg);
@@ -15,6 +40,10 @@
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
+
+        @media(max-width: 767px){
+            height: 50vw;
+        }
 
         &::before{
             background-color: rgba(0, 0, 0, .2);                            
@@ -32,9 +61,17 @@
             position: relative;
             top: 24vh;
 
+            @media(max-width: 767px){
+                top: 24vw;
+            }
+
             img{
                 border-radius: 50%;
                 max-width: 240px;
+
+                @media(max-width: 767px){
+                    max-width: 180px;
+                }
             }
         }
     }
@@ -47,6 +84,10 @@
 
         .cardapio{
             padding-top: 24vh;
+
+            @media(max-width: 767px){
+                padding-top: 30vw;
+            }
 
             .menu{
                 display: flex;
@@ -66,6 +107,10 @@
                         border-radius: 4px;
                         transition: all ease 0.3s;
                         border-bottom: white solid 4px;
+
+                        @media(max-width: 767px){
+                            font-size: 20px;
+                        }
     
                         &:hover{
                             text-shadow: white 0px 0px 4px;
@@ -84,7 +129,8 @@
                 width: 90%;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: center;
+                gap: 0 64px;
                 margin: 0 auto;
                 margin-bottom: 32px;
 
@@ -99,6 +145,11 @@
                     border-radius: 16px;
                     border: 2px #222 solid;
                     box-shadow: white 0px 0px 8px;
+
+                    @media(max-width: 767px){
+                        display: block;
+                        text-align: center;
+                    }
 
                     img{
                         border-radius: 16px;
@@ -136,6 +187,11 @@
                             width: 100%;
                             justify-content: end;
 
+                            @media(max-width: 767px){
+                                margin-top: 8px;
+                                justify-content: center;
+                            }
+
                             .adicionar{
                                 padding: 4px 8px;
                                 font-size: 16px;
@@ -149,6 +205,7 @@
                                 &:hover{
                                     transform: scale(1.1);
                                     transition: all ease 0.3s;
+                                    
                                 }
                             }
                         }
@@ -180,7 +237,7 @@
 
             .infos{
                 max-width: 1280px;
-                width: 100%;
+                width: 90%;
                 margin: 0 auto;
                 text-align: center;
                 
@@ -188,6 +245,10 @@
                     font-size: 32px;
                     color: whitesmoke;
                     margin-bottom: 32px;
+
+                    @media(max-width: 767px){
+                        font-size: 20px;
+                    }
                 }
 
                 .inputs{
@@ -196,8 +257,12 @@
                     gap: 64px;
                     padding-bottom: 32px;
 
+                    @media(max-width: 767px){
+                        display: block;
+                    }
+
                     .pedido{
-                        max-width: 480px;
+                        max-width: 600px;
                         width: 100%;
 
                         ul, .obs{
@@ -207,6 +272,7 @@
                             width: 100%;
                             padding: 4px;
                             margin-bottom: 16px;
+                            min-height: 64px;
                             height: 100%;
                         }
 
@@ -226,6 +292,12 @@
                                 justify-content: space-between;
                                 border: solid 2px rgba(0, 0, 0, .2);
 
+                                .itemInfo{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    width: 90%;
+                                }
+
                                 p{
                                     font-size: 18px;
                                 }
@@ -237,11 +309,14 @@
                                     border-radius: 50%;
                                     cursor: pointer;
                                     transition: all ease 0.2s;
+                                    align-self: baseline;
                                     
                                     &:hover{
                                         transition: all ease 0.2s;
                                         transform: scale(1.1);
                                     }
+
+                                    
                                 }
                             }
                         }
@@ -265,6 +340,39 @@
                             width: 100%;
                         }
                     }
+                }
+
+                .calcBox{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding-bottom: 32px;
+                    max-width: 720px;
+                    margin: 0 auto;
+
+                    .pix{
+                        margin-bottom: 8px;
+
+                        .pixTxt{
+                            margin-bottom: 4px;
+                            max-width: 360px;
+                            padding: 4px 8px;
+                            font-size: 20px;
+                            background-color: rgba(0, 0, 0, 0.8);
+                            border-radius: 4px;
+                            box-shadow: 0 0 4px;
+                            color: white;
+                        }
+                    }
+
+                    .txt{
+                        color: white;
+                        font-size: 20px;
+                        background-color: rgba(0, 0, 0, 0.8);
+                        border-radius: 4px;
+                        box-shadow: 0 0 4px;
+                        padding: 4px 8px;
+                    } 
                 }
 
                 .btnBox{

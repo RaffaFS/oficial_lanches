@@ -1,7 +1,7 @@
 // IMPORTAÇÃO PADRÃO
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from './index.module.scss'
 
 // IMPORTAÇÃO DE IMAGENS
@@ -75,6 +75,18 @@ export default() => {
 
     function adicionar(item){
         setCarrinho((carrinhoAtual) => [...carrinhoAtual, item]);
+    }
+
+    function remover(item){
+        const itemReal = item.target.previousElementSibling.innerText
+        setCarrinho((carrinhoAtual) => {
+            const itemIndex = carrinhoAtual.indexOf(itemReal)
+                const novoCarrinho = [...carrinhoAtual]
+                novoCarrinho.splice(itemIndex, 1)
+                carrinhoAtual = novoCarrinho
+            return carrinhoAtual;
+        })
+        console.log(carrinho)
     }
 
     function anotar(e){
@@ -339,10 +351,10 @@ export default() => {
                             <div className={styles.inputs}>
                                 <div className={styles.pedido}>
                                     <ul>
-                                        {carrinho.map((item, indice) => (
-                                            <li key={`${item}-${indice}`}>
+                                        {carrinho.map((item) => (
+                                            <li key={Math.random()}>
                                                 <p>{item}</p>
-                                                <strong>x</strong>
+                                                <strong onClick={remover}>x</strong>
                                             </li>
                                         ))}
                                     </ul>

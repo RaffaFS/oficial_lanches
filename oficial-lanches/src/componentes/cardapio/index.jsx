@@ -77,43 +77,45 @@ export default() => {
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
 
-    function adicionar(item, preco){
-        if(!popup){
-            setPopup(!popup)
-            setTimeout(() => setPopup(!!popup), 800)
+    function adicionar(item, preco) {
+        const novoItem = { id: Date.now(), nome: item, preco: Number(preco) };
+    
+        if (!popup) {
+            setPopup(!popup);
+            setTimeout(() => setPopup(!!popup), 800);
         }
-
-        setCarrinho((carrinhoAtual) => [...carrinhoAtual, item])
-
+    
+        setCarrinho((carrinhoAtual) => [...carrinhoAtual, novoItem]);
+    
         setValores((valoresAnteriores) => {
-            const novosValores = [...valoresAnteriores, Number(preco)]
-            const valorFinal = novosValores.reduce((resultado, item) => resultado + item, 0).toFixed(2)
-            setValorF(valorFinal)
-            return novosValores
-        })
+            const novosValores = [...valoresAnteriores, novoItem.preco];
+            const valorFinal = novosValores.reduce((resultado, item) => resultado + item, 0).toFixed(2);
+            setValorF(valorFinal);
+            return novosValores;
+        });
     }
+    
 
-    function remover(item){
-        const itemReal = item.target.previousElementSibling.innerText
+    function remover(item) {
+        const itemId = Number(item.target.dataset.id);
+    
         setCarrinho((carrinhoAtual) => {
-            const itemIndex = carrinhoAtual.indexOf(itemReal)
-                const novoCarrinho = [...carrinhoAtual]
-                novoCarrinho.splice(itemIndex, 1)
-                carrinhoAtual = novoCarrinho
-            return carrinhoAtual;
-        })
-        
-        const precoReal = item.target.previousElementSibling.children[1].innerText
+            const novoCarrinho = carrinhoAtual.filter((i) => i.id !== itemId);
+            return novoCarrinho;
+        });
+    
         setValores((valoresAnteriores) => {
-            const precoIndex = valoresAnteriores.indexOf(precoReal)
-                const novosValores = [...valoresAnteriores]
-                novosValores.splice(precoIndex, 1)
-                valoresAnteriores = novosValores
-                const valorFinal = novosValores.reduce((resultado, item) => resultado + item, 0).toFixed(2)
-                setValorF(valorFinal)
+            const itemRemovido = carrinho.find((i) => i.id === itemId);
+            if (itemRemovido) {
+                const novosValores = valoresAnteriores.filter((v, idx) => idx !== valoresAnteriores.indexOf(itemRemovido.preco));
+                const valorFinal = novosValores.reduce((resultado, valor) => resultado + valor, 0).toFixed(2);
+                setValorF(valorFinal);
+                return novosValores;
+            }
             return valoresAnteriores;
-        })
+        });
     }
+    
 
     function anotar(e){
         setObs(e.target.value)
@@ -235,26 +237,14 @@ export default() => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src={crepe1IMG} alt="Crepe de Pizza" />
+                                <img src={cocapIMG} alt="Coxinha de frango com catupiry" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
-                                        <h3 className={styles.title}>Crepe de Pizza</h3>
-                                        <h4 className={styles.preco}>R$ 7,00</h4>
+                                        <h3 className={styles.title}>Coxinha de frango com catupiry</h3>
+                                        <h4 className={styles.preco}>R$ 10,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Pizza", "7.00")}>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.item}>
-                                <img src={crepe1IMG} alt="Crepe de Frango com Catupiry" />
-                                <div className={styles.description}>
-                                    <div className={styles.texto}>
-                                        <h3 className={styles.title}>Crepe de Frango com Catupiry</h3>
-                                        <h4 className={styles.preco}>R$ 7,00</h4>
-                                    </div>
-                                    <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Frango com Catupiry", "7.00")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Coxinha de frango com catupiry", "10.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -311,74 +301,26 @@ export default() => {
                         </div>
                         <div className={`${styles.grupo} ${doces ? '' : styles.hidden}`}>
                             <div className={styles.item}>
-                                <img src={oreoIMG} alt="Geladinho Gourmet de Oreo" />
+                                <img src={crepe2IMG} alt="Croissant de nutella" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
-                                        <h3 className={styles.title}>Geladinho Gourmet de Oreo</h3>
-                                        <h4 className={styles.preco}>R$ 4,00</h4>
+                                        <h3 className={styles.title}>Croissant de nutella</h3>
+                                        <h4 className={styles.preco}>R$ 10,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Oreo", "4.00")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Croissant de nutella", "10.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src={maracujaIMG} alt="Geladinho Gourmet de Chocolate com Maracujá" />
+                                <img src={crepe2IMG} alt="Croissant de chocolate" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
-                                        <h3 className={styles.title}>Geladinho Gourmet de Chocolate com Maracujá</h3>
-                                        <h4 className={styles.preco}>R$ 4,00</h4>
+                                        <h3 className={styles.title}>Croissant de chocolate</h3>
+                                        <h4 className={styles.preco}>R$ 10,00</h4>
                                     </div>
                                     <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Chocolate com Maracujá", "4.00")}>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.item}>
-                                <img src={prestigioIMG} alt="Geladinho Gourmet de Prestígio" />
-                                <div className={styles.description}>
-                                    <div className={styles.texto}>
-                                        <h3 className={styles.title}>Geladinho Gourmet de Prestígio</h3>
-                                        <h4 className={styles.preco}>R$ 4,00</h4>
-                                    </div>
-                                    <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet de Prestígio", "4.00")}>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.item}>
-                                <img src={bisIMG} alt="Geladinho Gourmet BIS" />
-                                <div className={styles.description}>
-                                    <div className={styles.texto}>
-                                        <h3 className={styles.title}>Geladinho Gourmet BIS</h3>
-                                        <h4 className={styles.preco}>R$ 4,00</h4>
-                                    </div>
-                                    <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Geladinho Gourmet BIS", "4.00")}>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.item}>
-                                <img src={crepe2IMG} alt="Crepe de Prestígio" />
-                                <div className={styles.description}>
-                                    <div className={styles.texto}>
-                                        <h3 className={styles.title}>Crepe de Prestígio</h3>
-                                        <h4 className={styles.preco}>R$ 7,00</h4>
-                                    </div>
-                                    <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Prestígio", "7.00")}>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.item}>
-                                <img src={crepe2IMG} alt="Crepe de Sonho de Valsa" />
-                                <div className={styles.description}>
-                                    <div className={styles.texto}>
-                                        <h3 className={styles.title}>Crepe de Sonho de Valsa</h3>
-                                        <h4 className={styles.preco}>R$ 7,00</h4>
-                                    </div>
-                                    <div className={styles.btnBox}>
-                                        <button className={styles.adicionar} onClick={() => adicionar("Crepe de Sonho de Valsa", "7.00")}>Adicionar</button>
+                                        <button className={styles.adicionar} onClick={() => adicionar("Croissant de chocolate", "10.00")}>Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -390,17 +332,17 @@ export default() => {
                             <h2>Confira seu pedido, adicione observações e digite o endereço</h2>
                             <div className={styles.inputs}>
                                 <div className={styles.pedido}>
-                                    <ul>
-                                        {carrinho.map((item, index) => (
-                                            <li key={Math.random()}>
-                                                <div className={styles.itemInfo}>
-                                                    <p>{item}</p>
-                                                    <p>R${valores[index]}</p>
-                                                </div>
-                                                <strong onClick={remover}>x</strong>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <ul>
+                                    {carrinho.map((item) => (
+                                        <li key={item.id}>
+                                            <div className={styles.itemInfo}>
+                                                <p>{item.nome}</p>
+                                                <p>R${item.preco.toFixed(2)}</p>
+                                            </div>
+                                            <strong data-id={item.id} onClick={remover}>x</strong>
+                                        </li>
+                                    ))}
+                                </ul>
                                     <textarea className={styles.obs} placeholder="Adicione observações aqui" onChange={anotar}></textarea>
                                 </div>
                                 <div className={styles.endereco}>

@@ -326,7 +326,12 @@ export default() => {
                             </div>
                         </div>
                         <div className={`${styles.grupo} ${styles.sobre} ${sobre ? '' : styles.hidden}`}>
-                            <p>Inserimos aqui um texto de apresentação sobre o negócio</p>
+                            <div className={styles.text}>
+                                <p>Meu nome é Yasmin, tenho 21 anos, e sou a fundadora do Oficial Lanches. Este é o meu segundo empreendimento que consegui abrir graças aos lucros do primeiro, o qual ainda hoje administro.</p>
+                                <p>Desde os 17 anos, me dedico ao empreendedorismo e, ao longo dessa trajetória, sempre busquei maneiras de crescer e me aprimorar.</p>
+                                <p>Há quatro anos, encontrei uma verdadeira paixão pela cozinha, uma área que me proporciona tanto prazer quanto tranquilidade. Com o tempo, adquiri uma vasta experiência e hoje tenho a satisfação de oferecer lanches que considero excepcionais, capazes de proporcionar uma experiência única aos meus clientes.</p>
+                                <p>Agradeço imensamente por confiar em meu trabalho e espero receber seu feedback, que é sempre valioso para o meu contínuo aprimoramento.</p>
+                            </div>
                         </div>
                         <form className={`${styles.infos} ${sobre ? styles.hidden : ''}`} onSubmit={enviar}>
                             <h2>Confira seu pedido, adicione observações e digite o endereço</h2>

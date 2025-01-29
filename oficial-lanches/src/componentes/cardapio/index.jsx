@@ -12,18 +12,14 @@ import smashIMG from '../../imgs/Salgados/smash_burger.jpg'
 import baconIMG from '../../imgs/Salgados/bacon_burger.jpg'
 import crispyIMG from '../../imgs/Salgados/crispy_chicken.jpg'
 import duploIMG from '../../imgs/Salgados/duplo_da_casa.jpg'
-import crepe1IMG from '../../imgs/Salgados/crepe_salgado.jpg'
+import coxinha1IMG from '../../imgs/Salgados/coxinha_catupiry.jpg'
 
 import cocapIMG from '../../imgs/Bebidas/coca_lata.jpg'
 import guaranapIMG from '../../imgs/Bebidas/guarana_lata.jpg'
 import cocagIMG from '../../imgs/Bebidas/coca_2l.jpg'
 import sukitagIMG from '../../imgs/Bebidas/sukita_2l.jpg'
 
-import oreoIMG from '../../imgs/Doces/geladinho_oreo.jpg'
-import maracujaIMG from '../../imgs/Doces/geladinho_chocolate_maracuja.jpg'
-import prestigioIMG from '../../imgs/Doces/geladinho_prestigio.jpg'
-import bisIMG from '../../imgs/Doces/geladinho_bis.jpg'
-import crepe2IMG from '../../imgs/Doces/crepe_doce.jpg'
+import croissant1IMG from '../../imgs/Doces/croissant_doce.jpg'
 
 ////////////////////////////
 // CÓDIGO PARA EXPORTAÇÃO //
@@ -237,7 +233,7 @@ export default() => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src={cocapIMG} alt="Coxinha de frango com catupiry" />
+                                <img src={coxinha1IMG} alt="Coxinha de frango com catupiry" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Coxinha de frango com catupiry</h3>
@@ -301,7 +297,7 @@ export default() => {
                         </div>
                         <div className={`${styles.grupo} ${doces ? '' : styles.hidden}`}>
                             <div className={styles.item}>
-                                <img src={crepe2IMG} alt="Croissant de nutella" />
+                                <img src={croissant1IMG} alt="Croissant de nutella" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Croissant de nutella</h3>
@@ -313,7 +309,7 @@ export default() => {
                                 </div>
                             </div>
                             <div className={styles.item}>
-                                <img src={crepe2IMG} alt="Croissant de chocolate" />
+                                <img src={croissant1IMG} alt="Croissant de chocolate" />
                                 <div className={styles.description}>
                                     <div className={styles.texto}>
                                         <h3 className={styles.title}>Croissant de chocolate</h3>
